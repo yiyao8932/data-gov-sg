@@ -27,7 +27,7 @@ const DateComponent = () => {
 
   return (
     <div className="my-5">
-      <div className="flex justify-around">
+      <div className="flex justify-start">
         <div className="basis-1/4">
           <Input
             type="date"
