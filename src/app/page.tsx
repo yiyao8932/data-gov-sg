@@ -1,8 +1,6 @@
 "use client";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import { useState } from "react";
 import Date from "@/components/date";
+import Locations from "@/components/locations";
 
 export default function Home() {
   return (
@@ -10,6 +8,7 @@ export default function Home() {
       <div className="container mx-auto py-4">
         <h1>Weather Forecast & Traffic Cam</h1>
         <Date />
+        <Locations />
       </div>
     </>
   );
