@@ -8,10 +8,10 @@ import { ChangeEvent, useEffect, useState } from "react";
 export default function Home() {
   const [locations, setLocations] = useState<string[]>([]);
 
-  const [selectedLocation, setSelectedLocation] = useState<string>();
+  const [selectedLocation, setSelectedLocation] = useState<string>("");
 
   const currentDate = new Date();
-  const [selectedDate, setSelectedDate] = useState(
+  const [selectedDate, setSelectedDate] = useState<string>(
     moment(currentDate).format("YYYY-MM-DD") +
       "T" +
       moment(currentDate).format("HH:mm:ss")
@@ -24,14 +24,12 @@ export default function Home() {
   const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
     const dateTimeString =
       event.target.value + "T" + moment().format("HH:mm:ss");
-    console.log(dateTimeString);
     setSelectedDate(dateTimeString);
   };
 
   const handleTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
     const dateTimeString =
       selectedDate.split("T")[0] + "T" + event.target.value;
-    console.log(dateTimeString);
     setSelectedDate(dateTimeString);
   };
 
@@ -39,7 +37,6 @@ export default function Home() {
     const response = await getTrafficAndWeatherData(selectedDate);
     const locationResult = response.data.locationsResult;
     const locations = locationResult.map((location: any) => location.name);
-    console.log(locations);
     setLocations(locations);
   };
 
@@ -58,6 +55,7 @@ export default function Home() {
         />
         <LocationsComponent
           locations={locations}
+          selectedLocation={selectedLocation}
           handleLocationClick={handleLocationClick}
         />
       </div>
