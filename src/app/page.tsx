@@ -16,27 +16,38 @@ export default function Home() {
     trafficImage: []
   });
 
-  const currentDate = new Date();
   const [selectedDate, setSelectedDate] = useState<string>(
-    moment(currentDate).format("YYYY-MM-DD") +
-      "T" +
-      moment(currentDate).format("HH:mm:ss")
+    moment().format("YYYY-MM-DD") + "T" + moment().format("HH:mm:ss")
   );
+
+  const [dateError, setDateError] = useState<string>("");
 
   const handleLocationClick = (location: LocationDetails) => {
     setSelectedLocation(location);
   };
 
   const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
     const dateTimeString =
       event.target.value + "T" + moment().format("HH:mm:ss");
+
+    if (moment(dateTimeString).isAfter(moment())) {
+      setDateError("Please select a date in the past");
+      return;
+    }
     setSelectedDate(dateTimeString);
+    setDateError("");
   };
 
   const handleTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
     const dateTimeString =
       selectedDate.split("T")[0] + "T" + event.target.value;
+    if (moment(dateTimeString).isAfter(moment())) {
+      setDateError("Please select a time in the past");
+      return;
+    }
     setSelectedDate(dateTimeString);
+    setDateError("");
   };
 
   const handleData = async (selectedDate: string) => {
@@ -58,11 +69,14 @@ export default function Home() {
     <>
       <div className="container mx-auto py-4">
         <h1 className="text-3xl">Weather Forecast & Traffic Cam</h1>
-        <DateComponent
-          selectedDate={selectedDate}
-          handleDateChange={handleDateChange}
-          handleTimeChange={handleTimeChange}
-        />
+        <div className="ml-2 my-5">
+          <DateComponent
+            selectedDate={selectedDate}
+            handleDateChange={handleDateChange}
+            handleTimeChange={handleTimeChange}
+          />
+          {dateError && <p className="text-red-600">{dateError}</p>}
+        </div>
         <div className="flex flex-wrap">
           <LocationsComponent
             locations={locations}
