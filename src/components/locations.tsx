@@ -1,4 +1,4 @@
-import { Select, Option } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 
 interface LocationsProps {
   locations: string[];
@@ -9,11 +9,15 @@ const Locations: React.FC<LocationsProps> = (props: LocationsProps) => {
   return (
     <>
       <div className="w-1/2">
-        <ul>
-          <li>Location 1</li>
-          <li>Location 2</li>
-          <li>Location 3</li>
-        </ul>
+        <div className="flex flex-wrap">
+          {props.locations.map((location) => (
+            <div key={location}>
+              <Button className="m-2" color="blue-gray">
+                {location}
+              </Button>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
