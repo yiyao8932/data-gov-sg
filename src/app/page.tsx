@@ -41,8 +41,13 @@ export default function Home() {
 
   const handleData = async (selectedDate: string) => {
     const response = await getTrafficAndWeatherData(selectedDate);
-    const locations = response.data.locationsResult;
+    const locations: LocationDetails[] = response.data.locationsResult;
     setLocations(locations);
+    setSelectedLocation({
+      name: "",
+      forecast: "",
+      trafficImage: []
+    });
   };
 
   useEffect(() => {
@@ -58,11 +63,17 @@ export default function Home() {
           handleDateChange={handleDateChange}
           handleTimeChange={handleTimeChange}
         />
-        <LocationsComponent
-          locations={locations}
-          selectedLocation={selectedLocation}
-          handleLocationClick={handleLocationClick}
-        />
+        <div className="flex flex-wrap">
+          <LocationsComponent
+            locations={locations}
+            selectedLocation={selectedLocation}
+            handleLocationClick={handleLocationClick}
+          />
+          <WeatherComponent
+            selectedLocation={selectedLocation}
+            selectedDate={selectedDate}
+          />
+        </div>
       </div>
     </>
   );
