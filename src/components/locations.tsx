@@ -1,9 +1,10 @@
+import { LocationDetails } from "@/data-fetch/data.types";
 import { Button } from "@material-tailwind/react";
 
 interface LocationsProps {
-  locations: string[];
-  selectedLocation: string;
-  handleLocationClick(location: string): any;
+  locations: LocationDetails[];
+  selectedLocation: LocationDetails;
+  handleLocationClick(location: LocationDetails): any;
 }
 
 const Locations: React.FC<LocationsProps> = (props: LocationsProps) => {
@@ -12,16 +13,18 @@ const Locations: React.FC<LocationsProps> = (props: LocationsProps) => {
       <div className="w-1/2">
         <div className="flex flex-wrap">
           {props.locations.map((location) => (
-            <div key={location}>
+            <div key={location.name}>
               <Button
                 className="m-2"
                 color="blue-gray"
                 variant={
-                  props.selectedLocation == location ? "filled" : "outlined"
+                  props.selectedLocation.name == location.name
+                    ? "filled"
+                    : "outlined"
                 }
                 onClick={() => props.handleLocationClick(location)}
               >
-                {location}
+                {location.name}
               </Button>
             </div>
           ))}

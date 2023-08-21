@@ -1,14 +1,20 @@
 "use client";
 import DateComponent from "@/components/date";
 import LocationsComponent from "@/components/locations";
+import WeatherComponent from "@/components/weather";
 import { getTrafficAndWeatherData } from "@/data-fetch/data-fetch";
+import { LocationDetails } from "@/data-fetch/data.types";
 import moment from "moment";
 import { ChangeEvent, useEffect, useState } from "react";
 
 export default function Home() {
-  const [locations, setLocations] = useState<string[]>([]);
+  const [locations, setLocations] = useState<LocationDetails[]>([]);
 
-  const [selectedLocation, setSelectedLocation] = useState<string>("");
+  const [selectedLocation, setSelectedLocation] = useState<LocationDetails>({
+    name: "",
+    forecast: "",
+    trafficImage: []
+  });
 
   const currentDate = new Date();
   const [selectedDate, setSelectedDate] = useState<string>(
@@ -17,7 +23,7 @@ export default function Home() {
       moment(currentDate).format("HH:mm:ss")
   );
 
-  const handleLocationClick = (location: string) => {
+  const handleLocationClick = (location: LocationDetails) => {
     setSelectedLocation(location);
   };
 
@@ -35,8 +41,7 @@ export default function Home() {
 
   const handleData = async (selectedDate: string) => {
     const response = await getTrafficAndWeatherData(selectedDate);
-    const locationResult = response.data.locationsResult;
-    const locations = locationResult.map((location: any) => location.name);
+    const locations = response.data.locationsResult;
     setLocations(locations);
   };
 
