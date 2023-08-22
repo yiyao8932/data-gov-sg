@@ -13,6 +13,10 @@ Material Tailwind\
 Axios\
 Cypress for testing
 
+## Prerequisite
+
+Node.js version 18.17.1
+
 ## Getting Started
 
 First, run the development server:
