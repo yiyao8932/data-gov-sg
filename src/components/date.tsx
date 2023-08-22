@@ -18,7 +18,7 @@ const DateComponent = (props: DateComponentProps) => {
           onChange={props.handleDateChange}
         ></Input>
       </div>
-      <div className="basis-1/4">
+      <div className="basis-1/4 ml-3">
         <Input
           type="time"
           label="Time"

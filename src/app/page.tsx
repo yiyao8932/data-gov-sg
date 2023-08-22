@@ -1,6 +1,7 @@
 "use client";
 import DateComponent from "@/components/date";
 import LocationsComponent from "@/components/locations";
+import TrafficImageComponent from "@/components/traffic-image";
 import WeatherComponent from "@/components/weather";
 import { getTrafficAndWeatherData } from "@/data-fetch/data-fetch";
 import { LocationDetails } from "@/data-fetch/data.types";
@@ -68,7 +69,7 @@ export default function Home() {
   return (
     <>
       <div className="container mx-auto py-4">
-        <h1 className="text-3xl">Weather Forecast & Traffic Cam</h1>
+        <h1 className="text-4xl">Weather Forecast & Traffic Cam</h1>
         <div className="ml-2 my-5">
           <DateComponent
             selectedDate={selectedDate}
@@ -88,6 +89,7 @@ export default function Home() {
             selectedDate={selectedDate}
           />
         </div>
+        <TrafficImageComponent trafficImages={selectedLocation.trafficImage} />
       </div>
     </>
   );

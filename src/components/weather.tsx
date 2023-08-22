@@ -59,12 +59,13 @@ const WeatherComponent: React.FC<WeatherComponentProps> = (
   return (
     <>
       {forecast && (
-        <div>
+        <div className="">
+          <div className="text-3xl">Forecast</div>
           <Image
             src={getWeatherIcon(forecast, hour)}
             alt="Weather Icon"
-            height={150}
-            width={150}
+            height={200}
+            width={200}
           />
           {forecast}
         </div>

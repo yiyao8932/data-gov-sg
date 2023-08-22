@@ -10,12 +10,12 @@ interface LocationsProps {
 const Locations: React.FC<LocationsProps> = (props: LocationsProps) => {
   return (
     <>
-      <div className="w-1/2">
+      <div className="w-full md:w-2/3">
         <div className="flex flex-wrap">
           {props.locations.map((location) => (
             <div key={location.name}>
               <Button
-                className="m-2"
+                className="m-1 md:m-2"
                 color="blue-gray"
                 variant={
                   props.selectedLocation.name == location.name
