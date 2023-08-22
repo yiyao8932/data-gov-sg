@@ -28,7 +28,6 @@ export default function Home() {
   };
 
   const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     const dateTimeString =
       event.target.value + "T" + moment().format("HH:mm:ss");
 
