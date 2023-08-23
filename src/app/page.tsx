@@ -67,7 +67,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="container py-4 mx-2 sm:mx-auto">
+      <div className="container py-4 mx-3 sm:mx-auto">
         <h1 className="text-4xl">Weather Forecast & Traffic Cam</h1>
         <div className="ml-2 my-5">
           <DateComponent

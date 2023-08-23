@@ -1,4 +1,5 @@
 import { LocationDetails } from "@/data-fetch/data.types";
+import { Card } from "@material-tailwind/react";
 import moment from "moment";
 import Image from "next/image";
 
@@ -30,27 +31,29 @@ const WeatherComponent: React.FC<WeatherComponentProps> = (
 
     if (isDayTime(forecast, hour)) {
       switch (true) {
-        case forecastLowerCase.includes("cloudy"):
+        case forecastLowerCase.includes("fair"):
+        case forecastLowerCase.includes("partly cloudy"):
           return "/weather-icons/partly-cloudy-day.svg";
+        case forecastLowerCase.includes("cloudy"):
+          return "/weather-icons/cloudy.svg";
         case forecastLowerCase.includes("showers"):
           return "/weather-icons/partly-cloudy-day-rain.svg";
         case forecastLowerCase.includes("rain"):
           return "/weather-icons/rain.svg";
-        case forecastLowerCase.includes("fair"):
-          return "/weather-icons/partly-cloudy-day.svg";
         default:
           return "/weather-icons/partly-cloudy-day.svg";
       }
     } else {
       switch (true) {
-        case forecastLowerCase.includes("cloudy"):
+        case forecastLowerCase.includes("fair"):
+        case forecastLowerCase.includes("partly cloudy"):
           return "/weather-icons/partly-cloudy-night.svg";
+        case forecastLowerCase.includes("cloudy"):
+          return "/weather-icons/cloudy.svg";
         case forecastLowerCase.includes("showers"):
           return "/weather-icons/partly-cloudy-night-rain.svg";
         case forecastLowerCase.includes("rain"):
           return "/weather-icons/rain.svg";
-        case forecastLowerCase.includes("fair"):
-          return "/weather-icons/partly-cloudy-night.svg";
         default:
           return "/weather-icons/partly-cloudy-night.svg";
       }
@@ -59,16 +62,18 @@ const WeatherComponent: React.FC<WeatherComponentProps> = (
   return (
     <>
       {forecast && (
-        <div className="">
-          <div className="text-3xl">Forecast</div>
-          <Image
-            src={getWeatherIcon(forecast, hour)}
-            alt="Weather Icon"
-            height={200}
-            width={200}
-          />
-          {forecast}
-        </div>
+        <Card className="w-full lg:w-96 p-5">
+          <div className="mx-auto">
+            <div className="text-3xl">Forecast</div>
+            <Image
+              src={getWeatherIcon(forecast, hour)}
+              alt="Weather Icon"
+              height={200}
+              width={200}
+            />
+            {forecast}
+          </div>
+        </Card>
       )}
     </>
   );

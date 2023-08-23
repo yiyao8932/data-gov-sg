@@ -12,7 +12,7 @@ const TrafficImageComponent: React.FC<TrafficImageComponentProps> = (props) => {
       {trafficImages.length > 0 && (
         <>
           <div className="py-5 text-3xl">Traffic Cam</div>
-          <div className="flex flex-wrap md:-m-2">
+          <div className="flex flex-wrap">
             {trafficImages.map((trafficImage) => (
               <div key={trafficImage.image} className="flex flex-wrap">
                 <div className="w-full p-1 md:p-2">
@@ -21,6 +21,7 @@ const TrafficImageComponent: React.FC<TrafficImageComponentProps> = (props) => {
                     alt="Weather Icon"
                     height={480}
                     width={640}
+                    className="rounded-lg"
                   />
                 </div>
               </div>

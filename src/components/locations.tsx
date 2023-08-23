@@ -10,7 +10,7 @@ interface LocationsProps {
 const Locations: React.FC<LocationsProps> = (props: LocationsProps) => {
   return (
     <>
-      <div className="w-full md:w-2/3">
+      <div className="w-full lg:w-2/3 mb-5">
         <div className="flex flex-wrap">
           {props.locations.map((location) => (
             <div key={location.name}>
