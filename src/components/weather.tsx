@@ -62,7 +62,7 @@ const WeatherComponent: React.FC<WeatherComponentProps> = (
   return (
     <>
       {forecast && (
-        <Card className="w-full lg:w-96 p-5">
+        <Card className="w-full lg:w-96 p-5 place-content-center">
           <div className="mx-auto">
             <div className="text-3xl">Forecast</div>
             <Image
